@@ -1,0 +1,41 @@
+Запрос для выбора всех пар
+
+SELECT p.name "Продукты",c.name "Категории"
+FROM Product_Category pc
+right join Product p on pc.productId = p.id
+left join Category c on pc.categoryId = c.id
+;
+
+Это база данных, которой я пользовался для проверки своего запроса
+
+CREATE TABLE Product (
+  id INTEGER PRIMARY KEY,
+  name TEXT NOT NULL
+);
+
+CREATE TABLE Category (
+  id INTEGER PRIMARY KEY,
+  name TEXT NOT NULL
+);
+
+CREATE TABLE Product_Category (
+  id INTEGER PRIMARY KEY,
+  productId INTEGER,
+  categoryId INTEGER,
+  foreign KEY (productId) references Product (id),
+  foreign KEY (categoryId) references Category (id)
+);
+
+-- insert
+INSERT INTO Product VALUES (0001, 'Яблоко');
+INSERT INTO Product VALUES (0002, 'Свёкла');
+INSERT INTO Product VALUES (0003, 'Растишка');
+
+INSERT INTO Category VALUES (0001, 'Фрукты');
+INSERT INTO Category VALUES (0002, 'Овощи');
+INSERT INTO Category VALUES (0003, 'Без сахара');
+INSERT INTO Category VALUES (0004, 'Детское');
+
+INSERT INTO Product_Category VALUES (0001, 0001,0001);
+INSERT INTO Product_Category VALUES (0002, 0001,0003);
+INSERT INTO Product_Category VALUES (0003, 0002,0002);
